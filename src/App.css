@@ -1,0 +1,193 @@
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fdf6f0;
+    margin: 0;
+    padding: 0;
+}
+
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #fff8f5;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+
+    transition: transform 0.2s;
+}
+
+.container:hover {
+    transform: translateY(-2px);
+}
+
+
+h1 {
+    text-align: center;
+    color: #ff6f91;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+
+.search-bar {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ffd6da;
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 14px;
+    background-color: #fff0f2;
+    transition: 0.3s;
+}
+
+.search-bar:focus {
+    outline: none;
+    border-color: #ff85a2;
+    box-shadow: 0 0 6px rgba(255, 111, 145, 0.3);
+}
+
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+form input {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ffd6da;
+    flex: 1;
+    min-width: 120px;
+    background-color: #fff0f2;
+    transition: 0.3s;
+}
+
+form input:focus {
+    border-color: #ff85a2;
+    box-shadow: 0 0 6px rgba(255, 111, 145, 0.3);
+}
+
+form button {
+    background-color: #ff9a8b;
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+form button:hover {
+    background-color: #ff7e6b;
+
+}
+
+.sort-buttons {
+    margin-bottom: 15px;
+}
+
+.sort-buttons button {
+    background-color: #437bd6;
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-right: 10px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.sort-buttons button:hover {
+    background-color: #7baaf7;
+   
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+thead {
+    background-color: #ffd6da;
+    color: #333;
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ffe1e5;
+}
+
+tr:hover {
+    background-color: #fff0f2;
+    transition: 0.2s;
+}
+
+
+button.delete-btn {
+    background-color: #ff6f91;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+button.delete-btn:hover {
+    background-color: #ff4d75;
+}
+
+
+.empty {
+    text-align: center;
+    padding: 10px;
+    color: #ffb3c1;
+}
+
+
+.category-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    color: white;
+    font-weight: 500;
+}
+
+
+.category-badge.food {
+    background-color: #ffd166;
+  
+}
+
+.category-badge.travel {
+    background-color: #06d6a0;
+
+}
+
+.category-badge.shopping {
+    background-color: #f28482;
+
+}
+
+.category-badge.entertainment {
+    background-color: #8e7dbe;
+  
+}
+
+.category-badge.other {
+    background-color: #b5b5b5;
+  
+}
