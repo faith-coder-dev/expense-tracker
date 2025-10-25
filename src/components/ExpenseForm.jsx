@@ -1,42 +1,46 @@
 import React, { useState } from "react";
 
 function ExpenseForm({ addExpense }) {
-  const [description, setDescription] = useState("");
-  const [amount, setAmount] = useState("");
-  const [category, setCategory] = useState("");
+  const [expense, setExpense] = useState("");
+  const [amount, setAmount] = useState("500");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!description || !amount || !category) return;
+    if (!expense || !amount) return;
 
-    addExpense({ description, amount, category });
-    setDescription("");
-    setAmount("");
-    setCategory("");
+    addExpense({ expense, amount: `ksh. ${amount}` });
+    setExpense("");
+    setAmount("500");
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
+    <div>
+      <select
+        value={expense}
+        onChange={(e) => setExpense(e.target.value)}
+        style={{ width: '200px', padding: '5px', marginRight: '10px' }}
+      >
+        <option value="">Water</option>
+        <option value="Groceries">Groceries</option>
+        <option value="Transport">Transport</option>
+        <option value="Internet Bill">Internet Bill</option>
+        <option value="Electricity">Electricity</option>
+        <option value="Rent">Rent</option>
+        <option value="buy clothes">buy clothes</option>
+      </select>
       <input
         type="number"
-        placeholder="Amount"
         value={amount}
         onChange={(e) => setAmount(e.target.value)}
+        style={{ width: '100px', padding: '5px', marginRight: '10px' }}
       />
-      <input
-        type="text"
-        placeholder="Category"
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
-      />
-      <button type="submit">Add Expense</button>
-    </form>
+      <button
+        onClick={handleSubmit}
+        style={{ backgroundColor: '#007bff', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '3px' }}
+      >
+        Add Expense
+      </button>
+    </div>
   );
 }
 

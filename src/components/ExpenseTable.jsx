@@ -1,59 +1,40 @@
 import React from "react";
 
 function ExpenseTable({ expenses, deleteExpense }) {
- 
-  const getCategoryColor = (category) => {
-    switch (category.toLowerCase()) {
-      case "food":
-        return "food";
-      case "travel":
-        return "travel";
-      case "shopping":
-        return "shopping";
-      case "entertainment":
-        return "entertainment";
-      default:
-        return "other";
-    }
-  };
-
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Description</th>
-          <th>Amount</th>
-          <th>Category</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {expenses.length === 0 ? (
+    <div style={{ marginTop: '20px' }}>
+      <h2>Expenses List</h2>
+      <table style={{ width: '100%', backgroundColor: 'white', borderRadius: '5px' }}>
+        <thead>
           <tr>
-            <td colSpan="4" className="empty">
-              No expenses found
-            </td>
+            <th>#</th>
+            <th>Expense</th>
+            <th>Amount</th>
+            <th>Action</th>
           </tr>
-        ) : (
-          expenses.map((expense, index) => (
+        </thead>
+        <tbody>
+          {expenses.map((expense, index) => (
             <tr key={index}>
-              <td>{expense.description}</td>
+              <td>{index + 1}</td>
+              <td>{expense.expense}</td>
               <td>{expense.amount}</td>
               <td>
-                <span className={`category-badge ${getCategoryColor(expense.category)}`}>
-                  {expense.category}
-                </span>
-              </td>
-              <td>
-                <button className="delete-btn" onClick={() => deleteExpense(index)}>
-                  Delete
+                <button
+                  onClick={() => deleteExpense(index)}
+                  style={{ backgroundColor: '#dc3545', color: 'white', border: 'none', padding: '2px 8px', borderRadius: '3px' }}
+                >
+                  ×
                 </button>
               </td>
             </tr>
-          ))
-        )}
-      </tbody>
-    </table>
+          ))}
+        </tbody>
+      </table>
+      <div style={{ marginTop: '10px', textAlign: 'right' }}>
+        <strong>Total: {expenses.reduce((sum, exp) => sum + parseInt(exp.amount.replace('ksh. ', '')), 0)}</strong>
+      </div>
+    </div>
   );
 }
 
