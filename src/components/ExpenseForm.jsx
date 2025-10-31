@@ -1,45 +1,82 @@
 import React, { useState } from "react";
 
 function ExpenseForm({ addExpense }) {
-  const [expense, setExpense] = useState("");
-  const [amount, setAmount] = useState("500");
+  const [formData, setFormData] = useState({
+    name: "",
+    description: "",
+    category: "",
+    amount: "",
+    date: ""
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!expense || !amount) return;
+  
+    if (!formData.name || !formData.amount) return;
 
-    addExpense({ expense, amount: `ksh. ${amount}` });
-    setExpense("");
-    setAmount("500");
+    const toAdd = {
+      name: formData.name,
+      description: formData.description || "",
+      category: formData.category || "other",
+      amount: Number(formData.amount) || 0,
+      date: formData.date || new Date().toISOString()
+    };
+
+    addExpense(toAdd);
+    setFormData({
+      name: "",
+      description: "",
+      category: "",
+      amount: "",
+      date: ""
+    });
   };
 
   return (
-    <div>
-      <select
-        value={expense}
-        onChange={(e) => setExpense(e.target.value)}
-        style={{ width: '200px', padding: '5px', marginRight: '10px' }}
-      >
-        <option value="">Water</option>
-        <option value="Groceries">Groceries</option>
-        <option value="Transport">Transport</option>
-        <option value="Internet Bill">Internet Bill</option>
-        <option value="Electricity">Electricity</option>
-        <option value="Rent">Rent</option>
-        <option value="buy clothes">buy clothes</option>
-      </select>
-      <input
-        type="number"
-        value={amount}
-        onChange={(e) => setAmount(e.target.value)}
-        style={{ width: '100px', padding: '5px', marginRight: '10px' }}
-      />
-      <button
-        onClick={handleSubmit}
-        style={{ backgroundColor: '#007bff', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '3px' }}
-      >
-        Add Expense
-      </button>
+    <div className="add-expense-section">
+      <h2>Add Expense</h2>
+      <form onSubmit={handleSubmit} className="expense-form">
+        <input
+          type="text"
+          placeholder="Expense (e.g., Lunch, Groceries)"
+          value={formData.name}
+          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+          className="form-input"
+        />
+
+        <input
+          type="text"
+          placeholder="Description"
+          value={formData.description}
+          onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+          className="form-input"
+        />
+
+        <input
+          type="text"
+          placeholder="Category (e.g., food, travel)"
+          value={formData.category}
+          onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+          className="form-input"
+        />
+
+        <input
+          type="number"
+          placeholder="Amount"
+          value={formData.amount}
+          onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
+          className="form-input"
+        />
+
+        <input
+          type="date"
+          value={formData.date}
+          onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+          className="form-input"
+        />
+
+        <button type="submit" className="submit-button">Add to list</button>
+      </form>
     </div>
   );
 }
