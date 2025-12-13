@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ExpenseForm from "./components/ExpenseForm";
 import ExpenseTable from "./components/ExpenseTable";
 import "./App.css";
 
 function App() {
-  const [expenses, setExpenses] = useState([]);
+  // Initialize state from localStorage, or empty array if no data exists
+  const [expenses, setExpenses] = useState(() => {
+    const savedExpenses = localStorage.getItem("expenses");
+    return savedExpenses ? JSON.parse(savedExpenses) : [];
+  });
   const [searchTerm, setSearchTerm] = useState("");
+
+  // Save expenses to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem("expenses", JSON.stringify(expenses));
+  }, [expenses]);
 
   const addExpense = (newExpense) => {
     setExpenses([...expenses, { ...newExpense, id: Date.now() }]);
